@@ -91,3 +91,7 @@ A IA de mercado agora analisa carências do elenco, classifica prioridades, proc
 ## Integração Parte 4 — Etapa 4.3
 
 Gestão automática de contratos, promoção da base e venda de atletas excedentes integrada à IA de planejamento do elenco.
+
+## Parte 5 • Etapa 5.1
+
+O projeto agora possui calendário central da carreira, avanço diário e eventos globais sincronizados com as janelas de transferências.

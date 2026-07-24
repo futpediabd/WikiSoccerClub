@@ -59,3 +59,7 @@
 
 ## Parte 4 — Etapa 4.4
 Concluída a integração final do mercado com notícias, auditoria histórica, finanças, elenco e salvamento.
+
+## Parte 5 — Etapa 5.1
+
+Concluído o calendário central da carreira, com avanço diário, eventos globais, início de temporada, dias de jogo e sincronização automática com a janela de transferências.
