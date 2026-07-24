@@ -9,6 +9,7 @@ import com.wikisoccerclub.data.competition.CareerStandingsRepository
 import com.wikisoccerclub.data.competition.CompetitionStandings
 import com.wikisoccerclub.data.competition.StandingsEngine
 import com.wikisoccerclub.data.match.CompletedMatchResult
+import com.wikisoccerclub.core.headtohead.HeadToHeadModule
 
 /**
  * Liga os placares da agenda às classificações e ao controle de rodadas.
@@ -28,6 +29,7 @@ class CareerCompetitionService(
         val completed = schedule.complete(matchId, homeGoals, awayGoals) ?: return null
         val teamNames = teamNamesForCompetition(original.competitionId)
         val current = standingsRepository.getOrCreate(original.competitionId, teamNames)
+        HeadToHeadModule.service.registerCompletedMatch(completed)
         val updated = StandingsEngine.applyResult(
             standings = current,
             result = completed.toCompletedMatchResult(),

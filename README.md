@@ -106,3 +106,7 @@ Agenda, rodadas e classificação agora trabalham de forma integrada. Todo placa
 
 ## Parte 5 • Etapa 5.4
 Encerramento de temporada, campeões, acessos, rebaixamentos, histórico anual e preparação das divisões da temporada seguinte.
+
+## Parte 6 — Etapa 6.1
+
+O projeto agora possui retrospecto automático entre clubes, incluindo vitórias, empates, derrotas, gols marcados e sofridos, maiores vitórias e derrotas em casa e fora e filtro por competição.
