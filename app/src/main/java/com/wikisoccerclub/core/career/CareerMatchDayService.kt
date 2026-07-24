@@ -10,7 +10,8 @@ import kotlin.random.Random
  */
 class CareerMatchDayService(
     private val schedule: CareerScheduleRepository,
-    private val progression: CareerProgressionService
+    private val progression: CareerProgressionService,
+    private val competitions: CareerCompetitionService? = null
 ) {
     fun matchesOn(date: CareerDate): CareerMatchDay {
         val matches = schedule.pendingOn(date)
@@ -39,13 +40,15 @@ class CareerMatchDayService(
             val variation = (match.homeClubId.hashCode() - match.awayClubId.hashCode()).absoluteValue % 3
             val homeGoals = (random.nextInt(0, 4) + homeAdvantage + if (variation == 0) 1 else 0).coerceAtMost(6)
             val awayGoals = (random.nextInt(0, 4) + if (variation == 2) 1 else 0).coerceAtMost(6)
-            schedule.complete(match.id, homeGoals, awayGoals)
+            (competitions?.registerResult(match.id, homeGoals, awayGoals)
+                ?: schedule.complete(match.id, homeGoals, awayGoals))
             SimulatedCareerMatch(match.id, homeGoals, awayGoals)
         }
     }
 
     fun completeUserMatch(matchId: String, homeGoals: Int, awayGoals: Int): ScheduledCareerMatch? =
-        schedule.complete(matchId, homeGoals, awayGoals)
+        competitions?.registerResult(matchId, homeGoals, awayGoals)?.match
+            ?: schedule.complete(matchId, homeGoals, awayGoals)
 
     fun advanceToNextUserMatch(userClubId: String, maximumDays: Int = 370): CareerAdvanceToMatchResult {
         require(maximumDays > 0) { "O limite de dias deve ser positivo." }

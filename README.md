@@ -98,3 +98,7 @@ O projeto agora possui calendário central da carreira, avanço diário e evento
 
 ## Integrações recentes
 - **Parte 5 • Etapa 5.2:** agenda de competições, partidas do dia e avanço até o próximo jogo.
+
+## Parte 5 — Etapa 5.3
+
+Agenda, rodadas e classificação agora trabalham de forma integrada. Todo placar concluído pela IA ou pelo usuário atualiza automaticamente a tabela da competição.
