@@ -1,0 +1,25 @@
+[clube]
+nome=Exemplo Futebol Clube
+pais=Brasil
+cidade=São Paulo
+nivel=18
+
+[estadio]
+nome=Estádio Municipal WSC
+capacidade=32000
+
+[jogador]
+nome=João Silva
+idade=22
+nacionalidade=Brasil
+posicao=ATA
+overall=72
+potencial=84
+
+[jogador]
+nome=Lucas Santos
+idade=27
+nacionalidade=Brasil
+posicao=MC
+overall=70
+potencial=73

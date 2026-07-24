@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="wsc_green">#00A63C</color>
+    <color name="wsc_green_dark">#007A3D</color>
+    <color name="wsc_blue_dark">#07356B</color>
+    <color name="wsc_yellow">#FFDE17</color>
+    <color name="wsc_white">#FFFFFF</color>
+</resources>

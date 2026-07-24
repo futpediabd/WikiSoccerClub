@@ -1,0 +1,85 @@
+# WikiSoccerClub
+
+Jogo de gerenciamento de futebol para Android, desenvolvido em Kotlin com Jetpack Compose.
+
+## Estado atual
+
+Versão de integração: **Parte 4 • Etapa 4.1**.
+
+O projeto já reúne a base do modo carreira, calendário, competições, elenco, finanças, categorias de base, observação de jogadores, partidas e o primeiro ciclo do mercado de transferências.
+
+### Integração mais recente
+
+- Sistema de janela de transferências aberta e fechada.
+- Bloqueio de negociações fora da janela.
+- Configuração das janelas por temporada.
+- Eventos globais de abertura e fechamento.
+- Integração inicial com o calendário da carreira.
+
+A próxima etapa planejada é a **Parte 4 • Etapa 4.2**, com análise de posições carentes, busca automática de reforços e prioridades de contratação pela IA.
+
+## Tecnologias
+
+- Kotlin
+- Android SDK 34
+- Jetpack Compose
+- Material 3
+- Navigation Compose
+- DataStore Preferences
+- Java 17
+
+## Requisitos
+
+- Android Studio com suporte ao Android SDK 34
+- JDK 17
+- Gradle 8.2 ou superior
+- Dispositivo ou emulador com Android 7.0 (API 24) ou superior
+
+## Como abrir no Android Studio
+
+1. Clone ou baixe este repositório.
+2. Abra a pasta raiz `WikiSoccerClub` no Android Studio.
+3. Aguarde a sincronização do Gradle.
+4. Selecione um dispositivo ou emulador.
+5. Execute o módulo `app`.
+
+## Build pelo terminal
+
+Este pacote não contém o Gradle Wrapper. Com o Gradle instalado, execute:
+
+```bash
+gradle assembleDebug
+```
+
+O APK de depuração será gerado em:
+
+```text
+app/build/outputs/apk/debug/app-debug.apk
+```
+
+## Estrutura principal
+
+```text
+app/src/main/java/com/wikisoccerclub/
+├── core/          # Regras centrais e integrações
+├── data/          # Persistência, modelos e repositórios
+├── domain/        # Entidades e regras de negócio
+├── navigation/    # Rotas do aplicativo
+└── ui/            # Telas, componentes, temas e ViewModels
+```
+
+Os arquivos `.ban` e imagens de clubes podem ser armazenados em:
+
+```text
+app/src/main/assets/teams/
+```
+
+## Documentação das etapas
+
+Os arquivos `README_ETAPA_*.md` e `INTEGRACAO_*.md` registram a evolução do projeto. O resumo consolidado está em [`docs/STATUS_DO_PROJETO.md`](docs/STATUS_DO_PROJETO.md).
+
+## Observações
+
+- Não publique chaves de assinatura, senhas ou arquivos `local.properties`.
+- Escudos, bandeiras e dados reais devem respeitar as permissões de uso aplicáveis.
+- O projeto está em desenvolvimento e algumas integrações ainda serão concluídas nas próximas etapas.

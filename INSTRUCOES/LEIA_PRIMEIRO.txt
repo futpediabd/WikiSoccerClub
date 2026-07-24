@@ -1,0 +1,9 @@
+
+Extraia este ZIP na raiz do projeto.
+
+A estrutura de pastas já está pronta.
+
+Depois substitua os arquivos existentes quando solicitado.
+
+Os arquivos .txt desta pasta indicam quais arquivos do projeto precisam
+receber pequenas alterações manuais (AppRoutes, HomeScreen e WikiSoccerClubApp).

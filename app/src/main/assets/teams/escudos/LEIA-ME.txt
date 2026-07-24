@@ -1,0 +1,5 @@
+Coloque nesta pasta os escudos PNG com o mesmo nome-base do arquivo BAN.
+
+Exemplo:
+teams/flamengorj.ban
+teams/escudos/flamengorj.png

@@ -1,0 +1,3 @@
+const val COMPETITION="competition"
+const val STANDINGS="standings"
+const val FIXTURES="fixtures"
