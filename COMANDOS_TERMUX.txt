@@ -1,0 +1,17 @@
+cd /storage/emulated/0/Download
+
+rm -rf WikiSoccerClub_FullGame
+
+unzip -o WikiSoccerClub_Integracao_Parte07_Etapa07_2.zip
+
+cp -r WikiSoccerClub_FullGame/. ~/WikiSoccerClub/
+
+cd ~/WikiSoccerClub
+
+git status
+
+git add .
+
+git commit -m "Parte 7.2 - Formatos calendario e vagas das competicoes"
+
+git push
