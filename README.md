@@ -95,3 +95,6 @@ Gestão automática de contratos, promoção da base e venda de atletas excedent
 ## Parte 5 • Etapa 5.1
 
 O projeto agora possui calendário central da carreira, avanço diário e eventos globais sincronizados com as janelas de transferências.
+
+## Integrações recentes
+- **Parte 5 • Etapa 5.2:** agenda de competições, partidas do dia e avanço até o próximo jogo.
