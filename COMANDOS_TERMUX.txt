@@ -7,7 +7,7 @@ cd /storage/emulated/0/Download
 rm -rf WikiSoccerClub_FullGame
 
 4. Extraia o ZIP:
-unzip -o WikiSoccerClub_Integracao_Parte07_Etapa07_3.zip
+unzip -o WikiSoccerClub_Integracao_Parte07_Etapa07_4.zip
 
 5. Copie os arquivos para o projeto:
 cp -r WikiSoccerClub_FullGame/. ~/WikiSoccerClub/
@@ -22,7 +22,7 @@ git status
 git add .
 
 9. Crie o commit:
-git commit -m "Parte 7.3 - Sorteios ao vivo e mata mata"
+git commit -m "Parte 7.4 - Avanco classificacao e encerramento das competicoes"
 
 10. Envie ao GitHub:
 git push
