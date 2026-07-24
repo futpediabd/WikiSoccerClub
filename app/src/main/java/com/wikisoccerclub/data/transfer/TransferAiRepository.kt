@@ -44,6 +44,14 @@ class TransferAiRepository {
     fun decisions(): List<AiTransferDecision> =
         decisions.sortedByDescending { it.score }
 
+    fun decisionsForClub(clubId: String): List<AiTransferDecision> =
+        decisions.filter { it.clubId == clubId }
+            .sortedByDescending { it.score }
+
+    fun clearDecisionsForClub(clubId: String) {
+        decisions.removeAll { it.clubId == clubId }
+    }
+
     fun clearDecisions() {
         decisions.clear()
     }

@@ -83,3 +83,7 @@ Os arquivos `README_ETAPA_*.md` e `INTEGRACAO_*.md` registram a evolução do pr
 - Não publique chaves de assinatura, senhas ou arquivos `local.properties`.
 - Escudos, bandeiras e dados reais devem respeitar as permissões de uso aplicáveis.
 - O projeto está em desenvolvimento e algumas integrações ainda serão concluídas nas próximas etapas.
+
+## Integração Parte 4 — Etapa 4.2
+
+A IA de mercado agora analisa carências do elenco, classifica prioridades, procura reforços compatíveis e só cria propostas quando a janela de transferências está aberta. Consulte `INTEGRACAO_PARTE_04_ETAPA_04_2.md`.

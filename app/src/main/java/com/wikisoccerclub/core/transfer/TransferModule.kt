@@ -17,6 +17,13 @@ object TransferModule {
     val targets: TransferRepository by lazy { TransferRepository() }
     val windows: TransferWindowRepository by lazy { TransferWindowRepository() }
 
+    val recruitment: AiRecruitmentService by lazy {
+        AiRecruitmentService(
+            aiRepository = ai,
+            windowRepository = windows
+        )
+    }
+
     val workflow: TransferWorkflowService by lazy {
         TransferWorkflowService(
             offerRepository = offers,
