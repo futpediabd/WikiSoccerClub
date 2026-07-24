@@ -1,6 +1,7 @@
 package com.wikisoccerclub.core.transfer
 
 import com.wikisoccerclub.data.transfer.*
+import com.wikisoccerclub.data.youth.YouthAcademyRepository
 
 /**
  * Instâncias únicas compartilhadas por todas as telas do mercado.
@@ -16,11 +17,19 @@ object TransferModule {
     val ai: TransferAiRepository by lazy { TransferAiRepository() }
     val targets: TransferRepository by lazy { TransferRepository() }
     val windows: TransferWindowRepository by lazy { TransferWindowRepository() }
+    val youth: YouthAcademyRepository by lazy { YouthAcademyRepository() }
 
     val recruitment: AiRecruitmentService by lazy {
         AiRecruitmentService(
             aiRepository = ai,
             windowRepository = windows
+        )
+    }
+
+    val lifecycle: SquadLifecycleService by lazy {
+        SquadLifecycleService(
+            contracts = contracts,
+            youth = youth
         )
     }
 

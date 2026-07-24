@@ -87,3 +87,7 @@ Os arquivos `README_ETAPA_*.md` e `INTEGRACAO_*.md` registram a evolução do pr
 ## Integração Parte 4 — Etapa 4.2
 
 A IA de mercado agora analisa carências do elenco, classifica prioridades, procura reforços compatíveis e só cria propostas quando a janela de transferências está aberta. Consulte `INTEGRACAO_PARTE_04_ETAPA_04_2.md`.
+
+## Integração Parte 4 — Etapa 4.3
+
+Gestão automática de contratos, promoção da base e venda de atletas excedentes integrada à IA de planejamento do elenco.
