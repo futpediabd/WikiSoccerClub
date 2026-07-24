@@ -22,6 +22,10 @@ object CareerModule {
         )
     }
 
+    val seasons: CareerSeasonService by lazy {
+        CareerSeasonService(schedule = schedule, standings = standings, timeline = timeline)
+    }
+
     val matchDays: CareerMatchDayService by lazy {
         CareerMatchDayService(
             schedule = schedule,

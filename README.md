@@ -102,3 +102,7 @@ O projeto agora possui calendário central da carreira, avanço diário e evento
 ## Parte 5 — Etapa 5.3
 
 Agenda, rodadas e classificação agora trabalham de forma integrada. Todo placar concluído pela IA ou pelo usuário atualiza automaticamente a tabela da competição.
+
+
+## Parte 5 • Etapa 5.4
+Encerramento de temporada, campeões, acessos, rebaixamentos, histórico anual e preparação das divisões da temporada seguinte.
