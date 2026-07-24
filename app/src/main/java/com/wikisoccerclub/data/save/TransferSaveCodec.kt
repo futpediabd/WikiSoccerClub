@@ -1,6 +1,7 @@
 package com.wikisoccerclub.data.save
 
 import com.wikisoccerclub.data.transfer.*
+import com.wikisoccerclub.data.finance.*
 import java.net.URLDecoder
 import java.net.URLEncoder
 
@@ -24,6 +25,10 @@ object TransferSaveCodec {
                 it.contract.releaseClause ?: "", it.completedAtSeasonYear, it.status.name
             ))
         }
+        state.news.forEach { add(row("N", it.id, it.seasonYear, it.title, it.body, it.category.name, it.playerId ?: "", it.clubIds.joinToString(LIST), it.transferValue ?: "", it.important)) }
+        state.audit.forEach { add(row("A", it.id, it.seasonYear, it.type.name, it.playerId ?: "", it.clubId ?: "", it.relatedClubId ?: "", it.value ?: "", it.description)) }
+        state.finances.forEach { add(row("F", it.clubId, it.balance, it.monthlyPlayerWages, it.monthlyStaffWages, it.monthlyAcademyCost, it.monthlyStadiumCost, it.wageBudget, it.transferBudget)) }
+        state.financeTransactions.forEach { add(row("FT", it.id, it.clubId, it.seasonYear, it.month, it.type.name, it.description, it.amount)) }
     }.joinToString(SECTION)
 
     fun decode(raw: String): TransferSaveState {
@@ -35,6 +40,10 @@ object TransferSaveCodec {
         val loans = mutableListOf<ActiveLoan>()
         val clubs = mutableListOf<ClubTransferState>()
         val history = mutableListOf<CompletedTransfer>()
+        val news = mutableListOf<TransferNewsItem>()
+        val audit = mutableListOf<TransferAuditEvent>()
+        val finances = mutableListOf<ClubFinance>()
+        val financeTransactions = mutableListOf<FinanceTransaction>()
 
         raw.lineSequence().filter { it.isNotBlank() }.forEach { line ->
             runCatching {
@@ -50,10 +59,26 @@ object TransferSaveCodec {
                         val contract = PlayerContract(p[6], p[7], p[8].toInt(), p[9].toInt(), p[10].toLong(), p[11].longOrNull())
                         history += CompletedTransfer(p[1], p[2], p[3].ifBlank { null }, p[4], p[5].toLong(), contract, p[12].toInt(), TransferCompletionStatus.valueOf(p[13]))
                     }
+                    "N" -> news += TransferNewsItem(p[1], p[2].toInt(), p[3], p[4], TransferNewsCategory.valueOf(p[5]), p[6].ifBlank { null }, p[7].split(LIST).filter(String::isNotBlank), p[8].longOrNull(), p[9].toBoolean())
+                    "A" -> audit += TransferAuditEvent(p[1], p[2].toInt(), TransferAuditType.valueOf(p[3]), p[4].ifBlank { null }, p[5].ifBlank { null }, p[6].ifBlank { null }, p[7].longOrNull(), p[8])
+                    "F" -> finances += ClubFinance(p[1], p[2].toLong(), p[3].toLong(), p[4].toLong(), p[5].toLong(), p[6].toLong(), p[7].toLong(), p[8].toLong())
+                    "FT" -> financeTransactions += FinanceTransaction(p[1], p[2], p[3].toInt(), p[4].toInt(), FinanceTransactionType.valueOf(p[5]), p[6], p[7].toLong())
                 }
             }
         }
-        return TransferSaveState(offers, contractOffers, contracts, loanOffers, loans, clubs, history)
+        return TransferSaveState(
+            offers = offers,
+            contractOffers = contractOffers,
+            contracts = contracts,
+            loanOffers = loanOffers,
+            activeLoans = loans,
+            clubs = clubs,
+            history = history,
+            news = news,
+            audit = audit,
+            finances = finances,
+            financeTransactions = financeTransactions
+        )
     }
 
     private fun row(vararg values: Any): String =

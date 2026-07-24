@@ -8,13 +8,14 @@ class TransferWorkflowService(
     private val contractRepository: ContractRepository,
     private val clubRepository: ClubTransferRepository,
     private val historyRepository: TransferHistoryRepository,
-    private val windowRepository: TransferWindowRepository
+    private val windowRepository: TransferWindowRepository,
+    private val integrationService: TransferIntegrationService
 ) {
     fun registerClubs(clubs: List<ClubTransferState>) {
         clubRepository.saveAll(clubs)
     }
 
-    fun createOffer(offer: TransferOffer): Result<TransferOffer> = runCatching {
+    fun createOffer(offer: TransferOffer, seasonYear: Int = 0): Result<TransferOffer> = runCatching {
         windowRepository.requireOpen()
         require(offer.id.isNotBlank()) { "Identificador da proposta não informado." }
         require(offer.playerId.isNotBlank()) { "Jogador não informado." }
@@ -25,22 +26,40 @@ class TransferWorkflowService(
         require(offer.value >= 0L) { "Valor da proposta inválido." }
         val pending = offer.copy(status = OfferStatus.PENDING)
         offerRepository.save(pending)
+        integrationService.recordOffer(
+            pending, seasonYear, TransferAuditType.OFFER_CREATED,
+            "Proposta criada por ${pending.buyingClubId}."
+        )
         pending
     }
 
-    fun acceptOffer(offerId: String): Result<TransferOffer> = changeOffer(offerId) {
-        TransferOfferEngine.accept(it)
-    }
+    fun acceptOffer(offerId: String, seasonYear: Int = 0): Result<TransferOffer> =
+        changeOffer(offerId) { TransferOfferEngine.accept(it) }.onSuccess {
+            integrationService.recordOffer(
+                it, seasonYear, TransferAuditType.OFFER_ACCEPTED,
+                "A proposta de ${it.buyingClubId} foi aceita."
+            )
+        }
 
-    fun rejectOffer(offerId: String): Result<TransferOffer> = changeOffer(offerId) {
-        TransferOfferEngine.reject(it)
-    }
+    fun rejectOffer(offerId: String, seasonYear: Int = 0): Result<TransferOffer> =
+        changeOffer(offerId) { TransferOfferEngine.reject(it) }.onSuccess {
+            integrationService.recordOffer(
+                it, seasonYear, TransferAuditType.OFFER_REJECTED,
+                "A proposta de ${it.buyingClubId} foi recusada."
+            )
+        }
 
-    fun counterOffer(offerId: String, newValue: Long): Result<TransferOffer> = runCatching {
+    fun counterOffer(offerId: String, newValue: Long, seasonYear: Int = 0): Result<TransferOffer> = runCatching {
         windowRepository.requireOpen()
         require(newValue >= 0L) { "Valor da contraproposta inválido." }
         val offer = findOffer(offerId)
-        TransferOfferEngine.counter(offer, newValue).also(offerRepository::save)
+        TransferOfferEngine.counter(offer, newValue).also {
+            offerRepository.save(it)
+            integrationService.recordOffer(
+                it, seasonYear, TransferAuditType.COUNTER_OFFERED,
+                "Uma contraproposta foi enviada no valor de ${it.value}."
+            )
+        }
     }
 
     fun completeTransfer(
@@ -71,7 +90,10 @@ class TransferWorkflowService(
         )
         if (result.successful) {
             clubRepository.saveAll(result.updatedClubs)
-            result.transfer?.let(historyRepository::save)
+            result.transfer?.let {
+                historyRepository.save(it)
+                integrationService.recordCompletion(it)
+            }
         }
         return result
     }

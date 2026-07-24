@@ -1,6 +1,7 @@
 package com.wikisoccerclub.core.transfer
 
 import com.wikisoccerclub.data.transfer.*
+import com.wikisoccerclub.core.finance.FinanceModule
 import com.wikisoccerclub.data.youth.YouthAcademyRepository
 
 /**
@@ -18,6 +19,15 @@ object TransferModule {
     val targets: TransferRepository by lazy { TransferRepository() }
     val windows: TransferWindowRepository by lazy { TransferWindowRepository() }
     val youth: YouthAcademyRepository by lazy { YouthAcademyRepository() }
+    val news: TransferNewsRepository by lazy { TransferNewsRepository() }
+    val finances get() = FinanceModule.repository
+
+    val integration: TransferIntegrationService by lazy {
+        TransferIntegrationService(
+            financeRepository = finances,
+            newsRepository = news
+        )
+    }
 
     val recruitment: AiRecruitmentService by lazy {
         AiRecruitmentService(
@@ -39,7 +49,8 @@ object TransferModule {
             contractRepository = contracts,
             clubRepository = clubs,
             historyRepository = history,
-            windowRepository = windows
+            windowRepository = windows,
+            integrationService = integration
         )
     }
 }

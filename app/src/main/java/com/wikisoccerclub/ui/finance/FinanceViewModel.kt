@@ -1,6 +1,7 @@
 package com.wikisoccerclub.ui.finance
 
 import androidx.lifecycle.ViewModel
+import com.wikisoccerclub.core.finance.FinanceModule
 import com.wikisoccerclub.data.finance.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -21,7 +22,7 @@ data class FinanceUiState(
 
 class FinanceViewModel(
     private val repository: FinanceRepository =
-        FinanceRepository()
+        FinanceModule.repository
 ) : ViewModel() {
 
     private val _uiState =

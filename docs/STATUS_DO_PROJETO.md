@@ -56,3 +56,6 @@
 - O Gradle Wrapper não está incluído.
 - O build não foi executado neste ambiente por ausência do Gradle instalado.
 - Antes de uma publicação oficial, é necessário testar a sincronização, compilação e execução no Android Studio.
+
+## Parte 4 — Etapa 4.4
+Concluída a integração final do mercado com notícias, auditoria histórica, finanças, elenco e salvamento.

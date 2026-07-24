@@ -69,6 +69,25 @@ class FinanceRepository {
             }.thenByDescending { it.month }
         )
 
+    fun allFinances(): List<ClubFinance> = finances.values.toList()
+
+    fun allTransactions(): List<FinanceTransaction> = transactions.values.toList()
+
+    fun replaceTransferData(
+        financeValues: List<ClubFinance>,
+        transactionValues: List<FinanceTransaction>
+    ) {
+        finances.clear()
+        transactions.clear()
+        financeValues.forEach(::saveFinance)
+        transactionValues.forEach(::saveTransaction)
+    }
+
+    fun clearTransferData() {
+        finances.clear()
+        transactions.clear()
+    }
+
     fun saveSponsorshipOffer(
         offer: SponsorshipOffer
     ) {

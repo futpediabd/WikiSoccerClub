@@ -10,7 +10,11 @@ object TransferSaveBridge {
         loanOffers = TransferModule.loans.offers(),
         activeLoans = TransferModule.loans.activeLoans(),
         clubs = TransferModule.clubs.all(),
-        history = TransferModule.history.all()
+        history = TransferModule.history.all(),
+        news = TransferModule.news.allNews(),
+        audit = TransferModule.news.allAudit(),
+        finances = TransferModule.finances.allFinances(),
+        financeTransactions = TransferModule.finances.allTransactions()
     )
 
     fun restore(state: TransferSaveState) {
@@ -25,6 +29,11 @@ object TransferSaveBridge {
         )
         TransferModule.clubs.replaceAll(state.clubs)
         TransferModule.history.replaceAll(state.history)
+        TransferModule.news.replaceAll(state.news, state.audit)
+        TransferModule.finances.replaceTransferData(
+            state.finances,
+            state.financeTransactions
+        )
     }
 
     fun clear() {
@@ -33,5 +42,7 @@ object TransferSaveBridge {
         TransferModule.loans.clear()
         TransferModule.clubs.clear()
         TransferModule.history.clear()
+        TransferModule.news.clear()
+        TransferModule.finances.clearTransferData()
     }
 }
