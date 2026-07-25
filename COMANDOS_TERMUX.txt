@@ -1,28 +1,26 @@
-1. Abra o Termux.
-
-2. Entre na pasta de downloads:
+1. Entre na pasta de downloads:
 cd /storage/emulated/0/Download
 
-3. Apague somente a pasta temporária antiga:
+2. Apague somente a pasta temporária antiga:
 rm -rf WikiSoccerClub_FullGame
 
-4. Extraia o ZIP:
-unzip -o WikiSoccerClub_Integracao_Parte07_Etapa07_7.zip
+3. Extraia o ZIP:
+unzip -o WikiSoccerClub_Integracao_Parte07_Etapa07_8.zip
 
-5. Copie os arquivos para o projeto:
+4. Copie os arquivos para o projeto:
 cp -r WikiSoccerClub_FullGame/. ~/WikiSoccerClub/
 
-6. Entre no projeto:
+5. Entre no projeto:
 cd ~/WikiSoccerClub
 
-7. Confira os arquivos alterados:
+6. Confira as alterações:
 git status
 
-8. Adicione as alterações:
+7. Adicione os arquivos:
 git add .
 
-9. Crie o commit:
-git commit -m "Parte 7.7 - Criacao automatica das competicoes oficiais"
+8. Crie o commit:
+git commit -m "Parte 7.8 - Integracao global das competicoes"
 
-10. Envie ao GitHub:
+9. Envie ao GitHub:
 git push
