@@ -1,0 +1,29 @@
+1. Entre na pasta de downloads:
+cd /storage/emulated/0/Download
+
+2. Faça uma cópia de segurança do projeto atual:
+cp -r ~/WikiSoccerClub ~/WikiSoccerClub_backup_antes_reconstrucao
+
+3. Apague somente a pasta temporária de extração:
+rm -rf WikiSoccerClub_Reconstruido
+
+4. Extraia o ZIP reconstruído:
+unzip -o WikiSoccerClub_Reconstruido_Apos_Etapa07_8.zip
+
+5. Copie o conteúdo reconstruído para o projeto:
+cp -r WikiSoccerClub_Reconstruido/WikiSoccerClub/. ~/WikiSoccerClub/
+
+6. Entre no projeto:
+cd ~/WikiSoccerClub
+
+7. Confira as alterações:
+git status
+
+8. Adicione as alterações:
+git add .
+
+9. Crie o commit:
+git commit -m "Reconstrucao do projeto apos a Etapa 7.8"
+
+10. Envie para o GitHub:
+git push

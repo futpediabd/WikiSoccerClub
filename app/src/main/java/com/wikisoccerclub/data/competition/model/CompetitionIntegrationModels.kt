@@ -34,7 +34,7 @@ data class GlobalCalendarConflict(
 
 data class SeasonAdvanceRequest(
     val season: Int,
-    val leagueTables: Map<String, List<com.wikisoccerclub.data.competition.engine.LeagueFinalPosition>>,
+    val leagueTables: Map<String, List<com.wikisoccerclub.data.competition.model.LeagueFinalPosition>>,
     val divisionLinks: Map<String, Pair<String?, String?>>,
     val promotionRelegationRules: Map<String, PromotionRelegationRule>,
     val qualificationSources: List<QualificationSource>
