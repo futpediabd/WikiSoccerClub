@@ -5,12 +5,12 @@ cd /storage/emulated/0/Download
 rm -rf WikiSoccerClub_FullGame
 
 3. Extraia o ZIP:
-unzip -o WikiSoccerClub_Integracao_Parte07_Etapa07_8.zip
+unzip -o WikiSoccerClub_Integracao_Parte07_Etapa07_9.zip
 
 4. Copie os arquivos para o projeto:
 cp -r WikiSoccerClub_FullGame/. ~/WikiSoccerClub/
 
-5. Entre no projeto:
+5. Entre na pasta do projeto:
 cd ~/WikiSoccerClub
 
 6. Confira as alterações:
@@ -20,7 +20,7 @@ git status
 git add .
 
 8. Crie o commit:
-git commit -m "Parte 7.8 - Integracao global das competicoes"
+git commit -m "Parte 7.9 - Auditoria final do sistema de competicoes"
 
-9. Envie ao GitHub:
+9. Envie para o GitHub:
 git push
